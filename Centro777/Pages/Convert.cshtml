@@ -1,0 +1,44 @@
+﻿@page
+@model Centro777.Pages.ConvertModel
+
+<h2>Currency Conversion</h2>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Conversion.Amount">Значение:</label>
+        <input asp-for="Conversion.Amount" class="form-control" />
+        <span asp-validation-for="Conversion.Amount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Conversion.SourceCurrency">Исходная валюта:</label>
+        <input asp-for="Conversion.SourceCurrency" class="form-control" />
+        <span asp-validation-for="Conversion.SourceCurrency" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Conversion.TargetCurrency">Целевая валюта:</label>
+        <input asp-for="Conversion.TargetCurrency" class="form-control" />
+        <span asp-validation-for="Conversion.TargetCurrency" class="text-danger"></span>
+    </div>
+
+    <button type="submit">Перевести</button>
+</form>
+
+@if (Model.Conversion != null)
+{
+    <h3>Последние введенные значения:</h3>
+    <p>Значение: @Model.Conversion.Amount</p>
+    <p>Исходная валюта: @Model.Conversion.SourceCurrency</p>
+    <p>Целевая валюта: @Model.Conversion.TargetCurrency</p>
+}
+
+@if (Model.ConvertedAmount.HasValue)
+{
+    <h3>Переведенное Значение: @Model.ConvertedAmount.Value</h3>
+}
+else
+{
+    <h3>Введена ошибка!</h3>
+}
+
